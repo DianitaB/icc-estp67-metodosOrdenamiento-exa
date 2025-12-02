@@ -1,3 +1,4 @@
+import controllers.BrandController;
 import models.Brand;
 import models.CarModel;
 import models.CarYear;
@@ -5,10 +6,27 @@ import models.CarYear;
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Examen interciclo de Estructuras de Datos");
-        System.out.println("====Configurar studente.env====");
+        System.out.println("====Configurar studente.env====") ;
+        BrandController controller = new BrandController();
 
-        CarModel[] cars = {
-            
+        Brand[] brands = createBrands();
+        controller.sortSelectionDesc(brands);
+        for (Brand brand : brands) {
+                System.out.println(brand);
+                
+        }
+
+        Brand brand1 = controller.binarySearchByValidYears(brands, 7, true);
+        for (Brand brand : brands) {
+                System.out.println( brand1);
+        }
+        Brand brand2 = controller.binarySearchByValidYears(brands, 5, true);
+        System.out.println(brand2);
+    }
+
+
+        public static Brand[] createBrands() {
+        // ===== HONDA =====
         CarYear[] civicYears = {
                 new CarYear(2018, false),
                 new CarYear(2019, true),
@@ -198,9 +216,4 @@ public class App {
 
         return new Brand[] { honda, toyota, ford, chevrolet, nissan, mazda, hyundai };
     }
-    
-        }
-
-}
-
 }
